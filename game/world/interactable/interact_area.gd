@@ -1,0 +1,36 @@
+class_name InteractArea
+extends Area2D
+
+
+signal interacted_with
+
+var is_player_in_area: bool = false
+
+@onready var prompt: Label = $Prompt
+
+
+func _ready() -> void:
+	prompt.hide()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact") and is_player_in_area:
+		interacted_with.emit()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	var player: Player = body as Player
+	if player == null:
+		return
+	
+	is_player_in_area = true
+	prompt.show()
+
+
+func _on_body_exited(body: Node2D) -> void:
+	var player: Player = body as Player
+	if player == null:
+		return
+	
+	is_player_in_area = false
+	prompt.hide()
