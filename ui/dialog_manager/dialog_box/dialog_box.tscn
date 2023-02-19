@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://7cudvwikqxt5"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://dialog_manager/dialog_box/dialog_box.gd" id="1_qbonc"]
+[ext_resource type="Script" path="res://ui/dialog_manager/dialog_box/dialog_box.gd" id="1_qbonc"]
 
 [node name="DialogBox" type="ColorRect"]
 offset_left = 350.0

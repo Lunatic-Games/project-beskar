@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://x5nx6prxfixn"]
+
+[ext_resource type="PackedScene" uid="uid://ckbd6si0mgis8" path="res://_data/weapon/weapon.tscn" id="1_ij1f2"]
+[ext_resource type="PackedScene" uid="uid://bas000kjysu2b" path="res://game/combat/weapon_component/projectile_spawner/projectile_spawner.tscn" id="2_mnk3l"]
+[ext_resource type="PackedScene" uid="uid://iqfqypie7meu" path="res://_data/weapon/projectile/data/basic_projectile.tscn" id="3_cgltw"]
+[ext_resource type="Texture2D" uid="uid://dqwbg4r3cf2nj" path="res://_assets/art/weapons/pea_shooter.png" id="4_2wcys"]
+
+[node name="PeaShooter" instance=ExtResource("1_ij1f2")]
+
+[node name="ProjectileSpawner" parent="." index="0" instance=ExtResource("2_mnk3l")]
+projectile = ExtResource("3_cgltw")
+trigger = 3
+
+[node name="Sprite" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("4_2wcys")
