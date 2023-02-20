@@ -18,9 +18,11 @@ color = Color(0.105882, 0.105882, 0.105882, 1)
 [node name="Markers" type="Node2D" parent="."]
 
 [node name="DefaultSpawnMarker" type="Marker2D" parent="Markers"]
-position = Vector2(640, 360)
+position = Vector2(646, 540)
 
 [node name="NPCs" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
 
 [node name="PlayerHolder" type="Node2D" parent="."]
 

@@ -26,3 +26,8 @@ texture = ExtResource("2_vtjn7")
 
 [node name="PeaShooter" parent="RotationJoint" instance=ExtResource("3_ib8yw")]
 position = Vector2(47, 0)
+
+[node name="ProjectileSpawner" parent="RotationJoint/PeaShooter" index="0"]
+projectile_collision_mask = 4
+
+[editable path="RotationJoint/PeaShooter"]

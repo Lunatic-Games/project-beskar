@@ -28,8 +28,6 @@ var _charge_start_time: float = NAN  # Start with not being charged
 func _ready() -> void:
 	assert(trigger, "Weapon was set to not be triggerable, does this make sense? " +
 		"Can remove this assert if so.")
-	assert(max_charge_time >= min_charge_time, "Maximum charge time should be " +
-		"larger than the minimum.")
 
 
 func _process(_delta: float) -> void:

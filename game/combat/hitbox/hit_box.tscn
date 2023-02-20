@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://du1ityrplpu3u"]
+
+[ext_resource type="Script" path="res://game/combat/hitbox/hit_box.gd" id="1_lemut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtnkg"]
+resource_local_to_scene = true
+size = Vector2(86, 86)
+
+[node name="HitBox" type="Area2D" groups=["HITBOX"]]
+script = ExtResource("1_lemut")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jtnkg")

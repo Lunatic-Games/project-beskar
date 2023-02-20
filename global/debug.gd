@@ -5,7 +5,7 @@ extends Node
 
 
 func _ready() -> void:
-	if not (OS.is_debug_build() or OS.has_feature("standalone")):
+	if not OS.is_debug_build():
 		queue_free()
 
 

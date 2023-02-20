@@ -10,6 +10,7 @@ var max_health: int = 100
 var health: int = max_health
 
 @onready var rotation_joint: Node2D = $RotationJoint
+@onready var pea_shooter: Weapon = $RotationJoint/PeaShooter
 
 
 func _physics_process(delta: float) -> void:
