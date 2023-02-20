@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2kmkorwnlxnn"]
+
+[ext_resource type="Script" path="res://ui/resource_bar/resource_bar.gd" id="1_jrmth"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dylnw"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuq34"]
+bg_color = Color(0.843137, 0.14902, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njwqt"]
+bg_color = Color(0.380392, 0.0196078, 0.0941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxjpc"]
+bg_color = Color(0.619608, 0, 0.227451, 1)
+
+[node name="ResourceBar" type="ProgressBar"]
+custom_minimum_size = Vector2(300, 32)
+offset_right = 100.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/background = SubResource("StyleBoxFlat_dylnw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yuq34")
+max_value = 1.0
+step = 0.001
+value = 0.5
+show_percentage = false
+script = ExtResource("1_jrmth")
+
+[node name="DelayedBar" type="ProgressBar" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_njwqt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uxjpc")
+max_value = 1.0
+step = 0.001
+value = 0.75
+show_percentage = false
