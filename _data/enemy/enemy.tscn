@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxnwflma8plhe"]
+[gd_scene load_steps=4 format=3 uid="uid://bxnwflma8plhe"]
 
 [ext_resource type="PackedScene" uid="uid://bfvj0ohb6v0or" path="res://game/character/character.tscn" id="1_lma8j"]
 [ext_resource type="Script" path="res://_data/enemy/enemy.gd" id="1_y1cdt"]
@@ -6,12 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cl8lm"]
 resource_local_to_scene = true
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_egiro"]
-resource_local_to_scene = true
-size = Vector2(86, 86)
-
 [node name="Enemy" groups=["ENEMY"] instance=ExtResource("1_lma8j")]
-collision_layer = 0
+collision_layer = 8
 script = ExtResource("1_y1cdt")
 max_health = 30
 ally_mask = 8
@@ -20,13 +16,4 @@ enemy_mask = 6
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_cl8lm")
 
-[node name="HitBox" parent="." index="1"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" parent="HitBox" index="0"]
-shape = SubResource("RectangleShape2D_egiro")
-
 [connection signal="took_damage" from="." to="." method="_on_took_damage"]
-
-[editable path="HitBox"]

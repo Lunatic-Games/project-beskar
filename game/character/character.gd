@@ -8,7 +8,10 @@ signal new_ability_set(idx: int, ability: Ability)
 signal health_changed(amount: int)
 signal took_damage(amount: int)
 signal healed(amount: int)
+signal died
 
+signal ally_mask_changed
+signal enemy_mask_changed
 
 @export var equipped_weapon: Weapon = null :
 	set (new_weapon) :
@@ -27,10 +30,19 @@ signal healed(amount: int)
 		new_ability_set.emit(1, secondary_ability)
 
 @export var max_health: int = 100
-@export_flags_2d_physics var ally_mask: int = 0
-@export_flags_2d_physics var enemy_mask: int = 0
+@export_flags_2d_physics var ally_mask: int = 0 :
+	set (new_ally_mask) :
+		ally_mask = new_ally_mask
+		ally_mask_changed.emit()
+
+@export_flags_2d_physics var enemy_mask: int = 0 :
+	set (new_enemy_mask) :
+		enemy_mask = new_enemy_mask
+		enemy_mask_changed.emit()
 
 @onready var health: int = max_health
+
+@onready var rotation_joint: Node2D = $RotationJoint
 
 
 func is_alive() -> bool:
@@ -46,6 +58,9 @@ func take_damage(amount: int) -> int:
 	var actual_damage_taken: int = health_before - health
 	took_damage.emit(actual_damage_taken)
 	health_changed.emit(-actual_damage_taken)
+	
+	if actual_damage_taken > 0 and not is_alive():
+		died.emit()
 	
 	return actual_damage_taken
 
@@ -70,3 +85,7 @@ func activate_ability(ability: Ability) -> void:
 	var ability_activate_context = AbilityActivateContext.new(self, 
 		get_viewport().get_mouse_position())
 	ability.activate(ability_activate_context)
+
+
+func look_at_point(point: Vector2) -> void:
+	rotation_joint.rotation = rotation_joint.global_position.angle_to_point(point)

@@ -4,7 +4,6 @@ extends Character
 var max_speed: float = 300.0
 var move_acceleration: float = 2.0
 
-@onready var rotation_joint: Node2D = $RotationJoint
 @onready var pistol: Weapon = $RotationJoint/Pistol
 
 
@@ -22,13 +21,13 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	var mouse_pos: Vector2 = get_global_mouse_position()
-	rotation_joint.rotation = rotation_joint.global_position.angle_to_point(mouse_pos)
+	look_at_point(mouse_pos)
 	
 	if equipped_weapon:
 		if Input.is_action_pressed("primary_attack"):
-			equipped_weapon.trigger_primary_attack()
+			equipped_weapon.trigger_primary_attack(get_viewport().get_mouse_position())
 		if Input.is_action_pressed("secondary_attack"):
-			equipped_weapon.trigger_secondary_attack()
+			equipped_weapon.trigger_secondary_attack(get_viewport().get_mouse_position())
 	
 	if primary_ability and Input.is_action_pressed("primary_ability"):
 		activate_ability(primary_ability)

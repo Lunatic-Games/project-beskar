@@ -1,17 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg5h06b3wne0w"]
+[gd_scene load_steps=6 format=3 uid="uid://bg5h06b3wne0w"]
 
 [ext_resource type="PackedScene" uid="uid://bxnwflma8plhe" path="res://_data/enemy/enemy.tscn" id="1_xpida"]
 [ext_resource type="Texture2D" uid="uid://djy55utqyrcjj" path="res://_assets/art/player/player.png" id="2_grtt1"]
+[ext_resource type="PackedScene" uid="uid://c0ds0tpjwdaof" path="res://game/combat/ai/combat_ai.tscn" id="3_hf70e"]
+[ext_resource type="PackedScene" uid="uid://bc3rbg0cdggbw" path="res://_data/weapon/_data/pistol.tscn" id="3_kenlc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcdft"]
 resource_local_to_scene = true
 size = Vector2(80, 80)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5fl8"]
-resource_local_to_scene = true
-size = Vector2(86, 86)
-
-[node name="BasicEnemy" instance=ExtResource("1_xpida")]
+[node name="BasicEnemy" node_paths=PackedStringArray("equipped_weapon") instance=ExtResource("1_xpida")]
+equipped_weapon = NodePath("RotationJoint/Pistol")
 
 [node name="Sprite" type="Sprite2D" parent="." index="0"]
 modulate = Color(0.956863, 0, 0.403922, 1)
@@ -20,7 +19,13 @@ texture = ExtResource("2_grtt1")
 [node name="CollisionShape" parent="." index="1"]
 shape = SubResource("RectangleShape2D_wcdft")
 
-[node name="CollisionShape2D" parent="HitBox" index="0"]
-shape = SubResource("RectangleShape2D_n5fl8")
+[node name="Pistol" parent="RotationJoint" index="0" instance=ExtResource("3_kenlc")]
+position = Vector2(40, 0)
 
-[editable path="HitBox"]
+[node name="Sprite" parent="RotationJoint/Pistol" index="0"]
+self_modulate = Color(0.952941, 0, 0.447059, 1)
+
+[node name="CombatAI" parent="." index="3" node_paths=PackedStringArray("controlled_character") instance=ExtResource("3_hf70e")]
+controlled_character = NodePath("..")
+
+[editable path="RotationJoint/Pistol"]

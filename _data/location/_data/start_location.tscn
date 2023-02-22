@@ -7,3 +7,6 @@
 
 [node name="BasicEnemy" parent="Enemies" index="0" instance=ExtResource("2_4l8s2")]
 position = Vector2(1307, 543)
+
+[node name="BasicEnemy2" parent="Enemies" index="1" instance=ExtResource("2_4l8s2")]
+position = Vector2(1577, 755)

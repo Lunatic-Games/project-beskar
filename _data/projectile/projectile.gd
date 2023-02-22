@@ -2,6 +2,9 @@ class_name Projectile
 extends Area2D
 
 
+signal hit_something(Node2D)
+signal hit_character(Character)
+
 var speed: float = 0.0
 var direction: Vector2 = Vector2.RIGHT
 
@@ -16,13 +19,11 @@ func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
 
 
-func _on_area_entered(area: Area2D) -> void:
-	var hitbox: HitBox = area as HitBox
-	if not hitbox:
-		return
+func _on_body_entered(body: Node2D) -> void:
+	hit_something.emit(body)
 	
-	var hit_owner = hitbox.hitbox_owner
-	assert(hit_owner.has_method("take_damage"), "Hitbox owner needs a take_damage method")
+	var character_hit: Character = body as Character
+	if character_hit:
+		hit_character.emit(character_hit)
 	
-	hit_owner.take_damage(10)
 	queue_free()

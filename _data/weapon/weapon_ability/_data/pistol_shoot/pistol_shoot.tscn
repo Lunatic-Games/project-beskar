@@ -12,3 +12,4 @@ display_name = "Pistol shoot"
 [node name="SpawnProjectile" parent="ComponentContainer" index="0" instance=ExtResource("3_w6smh")]
 projectile = ExtResource("4_7frsx")
 speed = 1000.0
+damage_to_hit_character = 10
