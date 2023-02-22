@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://66xguv1cqqjv"]
+
+[ext_resource type="PackedScene" uid="uid://7eihe1quwb3y" path="res://_data/weapon/weapon_ability/weapon_ability.tscn" id="1_cfs2n"]
+[ext_resource type="Script" path="res://_data/weapon/weapon_ability/_data/pistol_shoot/pistol_shoot.gd" id="2_avr2o"]
+[ext_resource type="PackedScene" uid="uid://d1s0p7l2mde8" path="res://_data/ability/ability_component/_data/spawn_projectile/spawn_projectile.tscn" id="3_w6smh"]
+[ext_resource type="PackedScene" uid="uid://b4mt5ka5aey3l" path="res://_data/projectile/_data/basic_projectile.tscn" id="4_7frsx"]
+
+[node name="PistolShoot" instance=ExtResource("1_cfs2n")]
+script = ExtResource("2_avr2o")
+display_name = "Pistol shoot"
+
+[node name="SpawnProjectile" parent="ComponentContainer" index="0" instance=ExtResource("3_w6smh")]
+projectile = ExtResource("4_7frsx")
+speed = 1000.0

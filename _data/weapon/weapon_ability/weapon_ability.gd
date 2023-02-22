@@ -1,0 +1,2 @@
+class_name WeaponAbility
+extends Ability

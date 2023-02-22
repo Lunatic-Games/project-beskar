@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cacoagcticlyj"]
+
+[ext_resource type="Script" path="res://game/interact_area/interact_area.gd" id="1_ap43u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5t2h"]
+size = Vector2(125, 125)
+
+[node name="InteractArea" type="Area2D"]
+collision_mask = 64
+script = ExtResource("1_ap43u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.785397
+shape = SubResource("RectangleShape2D_l5t2h")
+
+[node name="Prompt" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -77.0
+offset_right = 20.0
+offset_bottom = -32.0
+theme_override_font_sizes/font_size = 30
+text = "E"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -13,7 +13,7 @@ motion_mirroring = Vector2(1920, 1080)
 [node name="Background" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.105882, 0.105882, 0.105882, 1)
+color = Color(0.101961, 0.0941176, 0.168627, 1)
 
 [node name="Markers" type="Node2D" parent="."]
 

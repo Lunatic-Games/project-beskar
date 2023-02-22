@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg5h06b3wne0w"]
+
+[ext_resource type="PackedScene" uid="uid://bxnwflma8plhe" path="res://_data/enemy/enemy.tscn" id="1_xpida"]
+[ext_resource type="Texture2D" uid="uid://djy55utqyrcjj" path="res://_assets/art/player/player.png" id="2_grtt1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcdft"]
+resource_local_to_scene = true
+size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5fl8"]
+resource_local_to_scene = true
+size = Vector2(86, 86)
+
+[node name="BasicEnemy" instance=ExtResource("1_xpida")]
+
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+modulate = Color(0.956863, 0, 0.403922, 1)
+texture = ExtResource("2_grtt1")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("RectangleShape2D_wcdft")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_n5fl8")
+
+[editable path="HitBox"]

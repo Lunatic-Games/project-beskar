@@ -1,3 +1,3 @@
 extends Node
 
-signal npc_interacted_with(NPC)
+signal interacted_with_npc(NPC)

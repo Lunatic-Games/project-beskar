@@ -1,33 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3t54pn7gnebm"]
+[gd_scene load_steps=8 format=3 uid="uid://c8bmmud6ff4vl"]
 
 [ext_resource type="Script" path="res://game/player/player.gd" id="1_433ev"]
+[ext_resource type="PackedScene" uid="uid://bfvj0ohb6v0or" path="res://game/character/character.tscn" id="1_q60t5"]
 [ext_resource type="Texture2D" uid="uid://djy55utqyrcjj" path="res://_assets/art/player/player.png" id="2_vtjn7"]
-[ext_resource type="PackedScene" uid="uid://x5nx6prxfixn" path="res://_data/weapon/data/pea_shooter.tscn" id="3_ib8yw"]
+[ext_resource type="PackedScene" uid="uid://bc3rbg0cdggbw" path="res://_data/weapon/_data/pistol.tscn" id="3_knr0o"]
+[ext_resource type="PackedScene" uid="uid://dpmyaojr3mn8w" path="res://_data/ability/_data/heal_pack.tscn" id="4_87ed4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8n6hy"]
-size = Vector2(49.4975, 49.4975)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p31jg"]
+resource_local_to_scene = true
+size = Vector2(80, 79)
 
-[node name="Player" type="CharacterBody2D" groups=["PLAYER"]]
-position = Vector2(114, 69)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahner"]
+resource_local_to_scene = true
+size = Vector2(86, 86)
+
+[node name="Player" node_paths=PackedStringArray("equipped_weapon", "primary_ability") groups=["PLAYER"] instance=ExtResource("1_q60t5")]
+collision_layer = 0
 script = ExtResource("1_433ev")
+equipped_weapon = NodePath("RotationJoint/Pistol")
+primary_ability = NodePath("RotationJoint/HealPack")
+ally_mask = 6
+enemy_mask = 8
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 3.05176e-05)
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_8n6hy")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-self_modulate = Color(0.901961, 0.901961, 0.901961, 1)
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+self_modulate = Color(0, 0.52549, 0.956863, 1)
 texture_filter = 1
 texture = ExtResource("2_vtjn7")
 
-[node name="RotationJoint" type="Node2D" parent="."]
+[node name="CollisionShape" parent="." index="1"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_p31jg")
 
-[node name="PeaShooter" parent="RotationJoint" instance=ExtResource("3_ib8yw")]
-position = Vector2(47, 0)
+[node name="RotationJoint" type="Node2D" parent="." index="2"]
 
-[node name="ProjectileSpawner" parent="RotationJoint/PeaShooter" index="0"]
-projectile_collision_mask = 4
+[node name="Pistol" parent="RotationJoint" index="0" instance=ExtResource("3_knr0o")]
+position = Vector2(39, 0)
 
-[editable path="RotationJoint/PeaShooter"]
+[node name="HealPack" parent="RotationJoint" index="1" instance=ExtResource("4_87ed4")]
+
+[node name="HitBox" parent="." index="3"]
+collision_layer = 67
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_ahner")
+
+[editable path="HitBox"]

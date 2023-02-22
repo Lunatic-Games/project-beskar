@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuddeirdlbn16"]
+
+[ext_resource type="Script" path="res://ui/ability_bar/ability_bar.gd" id="1_cv87r"]
+[ext_resource type="PackedScene" uid="uid://b51rr07th8s1b" path="res://ui/ability_bar/ability_icon/ability_icon.tscn" id="2_kkgdo"]
+
+[node name="AbilityBar" type="HBoxContainer"]
+offset_left = 17.0
+offset_top = 64.0
+offset_right = 135.0
+offset_bottom = 116.0
+theme_override_constants/separation = 14
+script = ExtResource("1_cv87r")
+
+[node name="PrimaryAbilityIcon" parent="." instance=ExtResource("2_kkgdo")]
+layout_mode = 2
+
+[node name="SecondaryAbilityIcon" parent="." instance=ExtResource("2_kkgdo")]
+layout_mode = 2

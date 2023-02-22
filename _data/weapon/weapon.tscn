@@ -4,3 +4,9 @@
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_qtn36")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="PrimaryAbilityContainer" type="Node2D" parent="."]
+
+[node name="SecondaryAbilityContainer" type="Node2D" parent="."]

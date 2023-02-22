@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfvj0ohb6v0or"]
+
+[ext_resource type="Script" path="res://game/character/character.gd" id="1_cm73s"]
+[ext_resource type="PackedScene" uid="uid://du1ityrplpu3u" path="res://game/combat/hitbox/hit_box.tscn" id="2_boeoo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vu0qh"]
+resource_local_to_scene = true
+
+[node name="Character" type="CharacterBody2D" groups=["CHARACTER"]]
+script = ExtResource("1_cm73s")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vu0qh")
+
+[node name="HitBox" parent="." node_paths=PackedStringArray("hitbox_owner") instance=ExtResource("2_boeoo")]
+hitbox_owner = NodePath("..")

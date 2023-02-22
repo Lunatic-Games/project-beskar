@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc7jgyfi6y7lr"]
+
+[ext_resource type="PackedScene" uid="uid://cerdey02xv82v" path="res://_data/location/location.tscn" id="1_myai6"]
+[ext_resource type="PackedScene" uid="uid://bg5h06b3wne0w" path="res://_data/enemy/_data/basic_enemy.tscn" id="2_4l8s2"]
+
+[node name="StartLocation" instance=ExtResource("1_myai6")]
+
+[node name="BasicEnemy" parent="Enemies" index="0" instance=ExtResource("2_4l8s2")]
+position = Vector2(1307, 543)
