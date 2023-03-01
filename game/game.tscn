@@ -17,5 +17,6 @@ offset_left = 17.0
 offset_top = 17.0
 offset_right = 217.0
 offset_bottom = 49.0
+shake_on_increase = false
 
 [node name="AbilityBar" parent="HUD" instance=ExtResource("4_kc4cw")]

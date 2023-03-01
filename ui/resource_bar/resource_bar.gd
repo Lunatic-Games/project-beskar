@@ -5,8 +5,15 @@ extends ProgressBar
 @export var show_while_full: bool = true
 @export var staggered_drop: bool = true
 @export_range(0.01, 3.0, 0.01) var drop_speed: float = 0.5
+@export var flash_on_increase: bool = true
+@export var flash_on_decrease: bool = true
+@export var shake_on_increase: bool = true
+@export var shake_on_decrease: bool = true
 
 @onready var delayed_bar: ProgressBar = $DelayedBar
+@onready var flash_color: ColorRect = $FlashColor
+@onready var flash_player: AnimationPlayer = $FlashAnimationPlayer
+@onready var shake_player: AnimationPlayer = $ShakeAnimationPlayer
 
 
 func _ready() -> void:
@@ -22,6 +29,19 @@ func _process(delta: float) -> void:
 func set_normalized_value(new_value: float):
 	assert(value >= 0.0 and value <= 1.0, "Value passed to health bar should be normalized.")
 	
+	flash_color.size.x = size.x * new_value
+	
+	if new_value > value:
+		if flash_on_increase:
+			flash_player.play("flash")
+		if shake_on_increase:
+			shake_player.play("shake")
+	elif new_value < value:
+		if flash_on_decrease:
+			flash_player.play("flash")
+		if shake_on_decrease:
+			shake_player.play("shake")
+			
 	value = new_value
 	
 	if not staggered_drop:

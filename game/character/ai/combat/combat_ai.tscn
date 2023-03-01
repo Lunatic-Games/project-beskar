@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0ds0tpjwdaof"]
+
+[ext_resource type="PackedScene" uid="uid://bjosrc3rdd5jt" path="res://game/character/ai/character_ai.tscn" id="1_x3wgk"]
+[ext_resource type="Script" path="res://game/character/ai/combat/combat_ai.gd" id="2_jt4ux"]
+[ext_resource type="PackedScene" uid="uid://c2wwlln6aogps" path="res://game/character/ai/combat/hostile_detection/hostile_detection.tscn" id="3_3eg8o"]
+
+[node name="CombatAI" instance=ExtResource("1_x3wgk")]
+script = ExtResource("2_jt4ux")
+should_look_at_closest_target = true
+should_primary_attack_closest_target = true
+should_secondary_attack_closest_target = true
+
+[node name="HostileDetection" parent="." index="0" instance=ExtResource("3_3eg8o")]

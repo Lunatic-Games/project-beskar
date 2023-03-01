@@ -5,8 +5,16 @@
 
 [node name="StartLocation" instance=ExtResource("1_myai6")]
 
+[node name="LowTileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(393227, 131072, 0, 393228, 0, 1, 458764, 393216, 0, 524300, 393216, 0, 589836, 393216, 0, 655372, 393216, 0, 720908, 458752, 0, 720907, 131072, 0)
+
 [node name="BasicEnemy" parent="Enemies" index="0" instance=ExtResource("2_4l8s2")]
 position = Vector2(1307, 543)
+collision_mask = 1
 
 [node name="BasicEnemy2" parent="Enemies" index="1" instance=ExtResource("2_4l8s2")]
 position = Vector2(1577, 755)
+collision_mask = 1
+
+[node name="HighTileMap" parent="." index="7"]
+layer_0/tile_data = PackedInt32Array(327688, 196608, 0, 393224, 393216, 0, 458760, 393216, 0, 524296, 393216, 0, 589832, 393216, 0, 655368, 393216, 0, 720904, 393216, 0, 786440, 65536, 0)

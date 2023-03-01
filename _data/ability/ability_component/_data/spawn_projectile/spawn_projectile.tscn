@@ -4,5 +4,6 @@
 
 [node name="SpawnProjectile" type="Node2D"]
 script = ExtResource("1_jy1f4")
+base_projectile_collision_mask = 1
 
 [connection signal="activated" from="." to="." method="_on_activated"]

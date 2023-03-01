@@ -106,6 +106,7 @@ debug_2={
 2d_physics/layer_5="NeutralToPlayer"
 2d_physics/layer_6="Projectile"
 2d_physics/layer_7="LocalPlayer"
+2d_physics/layer_8="ShortWall"
 
 [rendering]
 

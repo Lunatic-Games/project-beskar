@@ -20,7 +20,6 @@ enemy_mask = 8
 
 [node name="Sprite" type="Sprite2D" parent="." index="0"]
 self_modulate = Color(0, 0.52549, 0.956863, 1)
-texture_filter = 1
 texture = ExtResource("2_vtjn7")
 
 [node name="CollisionShape" parent="." index="1"]
@@ -28,6 +27,6 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_p31jg")
 
 [node name="Pistol" parent="RotationJoint" index="0" instance=ExtResource("3_knr0o")]
-position = Vector2(39, 0)
+position = Vector2(40, 0)
 
 [node name="HealPack" parent="RotationJoint" index="1" instance=ExtResource("4_87ed4")]
