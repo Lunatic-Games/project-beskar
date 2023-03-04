@@ -20,7 +20,7 @@ var ability: Ability = null :
 		show()
 
 @onready var cooldown_progress_bar: ProgressBar = $CooldownProgressBar
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var flash_rect: FlashRect = $FlashRect
 
 
 func _process(_delta: float) -> void:
@@ -35,4 +35,4 @@ func _update_cooldown_progress_bar():
 
 
 func _on_ability_cooldown_ended():
-	animation_player.play("flash_ready")
+	flash_rect.flash()

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdcf4bdeqakww"]
+
+[ext_resource type="Script" path="res://_data/location/gateway/gateway.gd" id="1_2j2k3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wq8h8"]
+resource_local_to_scene = true
+size = Vector2(225, 118)
+
+[node name="Gateway" type="Area2D"]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("1_2j2k3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wq8h8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

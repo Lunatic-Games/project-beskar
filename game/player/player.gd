@@ -5,6 +5,7 @@ var max_speed: float = 300.0
 var move_acceleration: float = 2.0
 
 @onready var pistol: Weapon = $RotationJoint/Pistol
+@onready var flash_rect: FlashRect = $FlashRect
 
 
 func _physics_process(delta: float) -> void:
@@ -34,3 +35,7 @@ func _process(_delta: float) -> void:
 	if secondary_ability and Input.is_action_pressed("secondary_ability"):
 		activate_ability(secondary_ability)
 	
+
+
+func _on_took_damage(_amount: int) -> void:
+	flash_rect.flash()

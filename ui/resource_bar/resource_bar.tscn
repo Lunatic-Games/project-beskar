@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2kmkorwnlxnn"]
+[gd_scene load_steps=10 format=3 uid="uid://d2kmkorwnlxnn"]
 
 [ext_resource type="Script" path="res://ui/resource_bar/resource_bar.gd" id="1_jrmth"]
+[ext_resource type="PackedScene" uid="uid://h1im13ci5ww" path="res://ui/flash_rect/flash_rect.tscn" id="2_4qm0b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dylnw"]
 bg_color = Color(1, 1, 1, 0)
@@ -14,41 +15,19 @@ bg_color = Color(0.380392, 0.0196078, 0.0941176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxjpc"]
 bg_color = Color(0.619608, 0, 0.227451, 1)
 
-[sub_resource type="Animation" id="Animation_xww0p"]
-resource_name = "flash"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlashColor:color")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_wsyog"]
+[sub_resource type="Animation" id="Animation_tewu0"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FlashColor:color")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4h7at"]
-_data = {
-"RESET": SubResource("Animation_wsyog"),
-"flash": SubResource("Animation_xww0p")
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_5vuoq"]
@@ -65,21 +44,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, -0.0349066, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_tewu0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cwhfo"]
@@ -117,19 +81,10 @@ step = 0.001
 value = 0.75
 show_percentage = false
 
-[node name="FlashColor" type="ColorRect" parent="."]
+[node name="FlashRect" parent="." instance=ExtResource("2_4qm0b")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 1, 1, 0)
-
-[node name="FlashAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_4h7at")
-}
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="ShakeAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

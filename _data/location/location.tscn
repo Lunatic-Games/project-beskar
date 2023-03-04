@@ -522,6 +522,8 @@ position = Vector2(646, 540)
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="Gateways" type="Node2D" parent="."]
+
 [node name="PlayerHolder" type="Node2D" parent="."]
 
 [node name="ProjectileHolder" type="Node2D" parent="." groups=["PROJECTILE_HOLDER"]]
