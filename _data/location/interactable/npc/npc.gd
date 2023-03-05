@@ -8,4 +8,4 @@ signal interacted_with
 
 
 func _on_interact_area_interacted_with() -> void:
-	GlobalSignals.interacted_with_npc.emit(self)
+	GlobalSignals.dialog_request.emit(dialog)

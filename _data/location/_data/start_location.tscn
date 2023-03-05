@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc7jgyfi6y7lr"]
+[gd_scene load_steps=5 format=3 uid="uid://bc7jgyfi6y7lr"]
 
 [ext_resource type="PackedScene" uid="uid://cerdey02xv82v" path="res://_data/location/location.tscn" id="1_myai6"]
+[ext_resource type="PackedScene" uid="uid://qykyhne7ihus" path="res://_data/location/interactable/npc/npc.tscn" id="2_e6ke1"]
 [ext_resource type="PackedScene" uid="uid://cdcf4bdeqakww" path="res://_data/location/gateway/gateway.tscn" id="2_gokdn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4pl3s"]
@@ -14,6 +15,10 @@ position = Vector2(958, 387)
 
 [node name="SouthEntrance" type="Marker2D" parent="Markers" index="1"]
 position = Vector2(960, 960)
+
+[node name="NPC" parent="NPCs" index="0" instance=ExtResource("2_e6ke1")]
+position = Vector2(1264, 608)
+dialog = Array[String](["Hello there!", "Good luck!"])
 
 [node name="SouthGateway" parent="Gateways" index="0" instance=ExtResource("2_gokdn")]
 position = Vector2(960, 1056)
