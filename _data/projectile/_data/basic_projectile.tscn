@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iei74"]
 size = Vector2(16, 16)
 
-[node name="Projectile" instance=ExtResource("1_si0vo")]
+[node name="BasicProjectile" instance=ExtResource("1_si0vo")]
 
 [node name="Sprite" type="Sprite2D" parent="." index="0"]
 self_modulate = Color(0.74902, 0.862745, 1, 1)

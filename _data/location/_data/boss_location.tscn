@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmtr75diygepu"]
+[gd_scene load_steps=5 format=3 uid="uid://bmtr75diygepu"]
 
 [ext_resource type="PackedScene" uid="uid://cerdey02xv82v" path="res://_data/location/location.tscn" id="1_gyagt"]
 [ext_resource type="PackedScene" uid="uid://cdcf4bdeqakww" path="res://_data/location/gateway/gateway.tscn" id="2_on2rn"]
+[ext_resource type="PackedScene" uid="uid://ohgxld0p54h4" path="res://_data/enemy/_data/boss_enemy.tscn" id="2_urfsx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0mkt"]
 resource_local_to_scene = true
@@ -17,6 +18,9 @@ position = Vector2(1424, 528)
 
 [node name="EastEntrance" type="Marker2D" parent="Markers" index="1"]
 position = Vector2(1792, 544)
+
+[node name="BossEnemy" parent="Enemies" index="0" instance=ExtResource("2_urfsx")]
+position = Vector2(496, 536)
 
 [node name="EastGateway" parent="Gateways" index="0" instance=ExtResource("2_on2rn")]
 position = Vector2(1888, 544)

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://ohgxld0p54h4"]
+
+[ext_resource type="PackedScene" uid="uid://bxnwflma8plhe" path="res://_data/enemy/enemy.tscn" id="1_7edbr"]
+[ext_resource type="Texture2D" uid="uid://3q5j7pndok6u" path="res://_assets/art/enemy/boss/boss.png" id="2_8t4h4"]
+[ext_resource type="PackedScene" uid="uid://bkhw1cur7mcei" path="res://_data/weapon/_data/big_blaster.tscn" id="3_3spdk"]
+[ext_resource type="PackedScene" uid="uid://c0ds0tpjwdaof" path="res://game/character/ai/combat/combat_ai.tscn" id="3_mynqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg2kt"]
+resource_local_to_scene = true
+size = Vector2(160, 160)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnawi"]
+resource_local_to_scene = true
+radius = 1929.07
+
+[node name="BossEnemy" node_paths=PackedStringArray("equipped_weapon") instance=ExtResource("1_7edbr")]
+equipped_weapon = NodePath("RotationJoint/BigBlaster")
+max_health = 100
+
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+self_modulate = Color(0.956863, 0, 0.403922, 1)
+texture = ExtResource("2_8t4h4")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("RectangleShape2D_mg2kt")
+
+[node name="BigBlaster" parent="RotationJoint" index="0" instance=ExtResource("3_3spdk")]
+position = Vector2(108, 0)
+
+[node name="Sprite" parent="RotationJoint/BigBlaster" index="0"]
+self_modulate = Color(0.952941, 0, 0.447059, 1)
+
+[node name="SpawnProjectile" parent="RotationJoint/BigBlaster/PrimaryAbilityContainer/BlastShot/ComponentContainer" index="0"]
+damage_to_hit_character = 20
+
+[node name="CombatAI" parent="." index="3" node_paths=PackedStringArray("controlled_character") instance=ExtResource("3_mynqk")]
+controlled_character = NodePath("..")
+
+[node name="DetectionShape" parent="CombatAI/HostileDetection" index="0"]
+shape = SubResource("CircleShape2D_mnawi")
+
+[editable path="RotationJoint/BigBlaster"]
+[editable path="RotationJoint/BigBlaster/PrimaryAbilityContainer/BlastShot"]
+[editable path="CombatAI"]
+[editable path="CombatAI/HostileDetection"]
