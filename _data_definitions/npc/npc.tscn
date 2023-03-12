@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6d3fwemspwh2"]
+
+[ext_resource type="PackedScene" path="res://_data_definitions/character/character.tscn" id="1_xbv77"]
+[ext_resource type="Script" path="res://_data_definitions/npc/npc.gd" id="2_d63k8"]
+[ext_resource type="Texture2D" uid="uid://n1ynmvx2gekb" path="res://_assets/art/npcs/npc.png" id="3_mbhhf"]
+[ext_resource type="PackedScene" uid="uid://xkjkug1gsxsa" path="res://_data_definitions/interact_area/interact_area.tscn" id="4_4bkip"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vocyv"]
+resource_local_to_scene = true
+size = Vector2(80, 80)
+
+[node name="NPC" instance=ExtResource("1_xbv77")]
+script = ExtResource("2_d63k8")
+dialog = Array[String]([])
+ally_mask = 14
+
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+self_modulate = Color(0.580392, 0.945098, 0.537255, 1)
+texture = ExtResource("3_mbhhf")
+
+[node name="InteractArea" parent="." index="1" instance=ExtResource("4_4bkip")]
+
+[node name="CollisionShape" parent="." index="2"]
+visible = false
+shape = SubResource("RectangleShape2D_vocyv")
+
+[connection signal="interacted_with" from="InteractArea" to="." method="_on_interact_area_interacted_with"]

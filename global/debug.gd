@@ -17,7 +17,7 @@ func _input(event: InputEvent) -> void:
 		heal_player_to_full_health()
 
 
-func deal_damage_to_player():
+func deal_damage_to_player() -> void:
 	for player in get_tree().get_nodes_in_group("PLAYER"):
 		player = player as Player
 		if not player:
@@ -26,7 +26,7 @@ func deal_damage_to_player():
 		player.take_damage(player.max_health / 4)
 
 
-func heal_player_to_full_health():
+func heal_player_to_full_health() -> void:
 	for player in get_tree().get_nodes_in_group("PLAYER"):
 		player = player as Player
 		if not player:

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo56ucerapu0a"]
+
+[ext_resource type="Script" path="res://character_components/hit_flash/hit_flash.gd" id="1_ag5lj"]
+
+[sub_resource type="Animation" id="Animation_11px4"]
+resource_name = "flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitFlash:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hnssn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitFlash:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4h7at"]
+_data = {
+"RESET": SubResource("Animation_hnssn"),
+"flash": SubResource("Animation_11px4")
+}
+
+[node name="HitFlash" type="ColorRect"]
+custom_minimum_size = Vector2(10, 10)
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_ag5lj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_4h7at")
+}

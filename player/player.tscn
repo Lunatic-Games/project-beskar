@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3ph1850ferh7"]
+
+[ext_resource type="PackedScene" uid="uid://c3rqbcjiupypx" path="res://_data_definitions/character/character.tscn" id="1_qngvl"]
+[ext_resource type="Script" path="res://player/player.gd" id="2_wj0xh"]
+[ext_resource type="Texture2D" uid="uid://djy55utqyrcjj" path="res://_assets/art/player/player.png" id="3_fn8rw"]
+[ext_resource type="PackedScene" uid="uid://bi6qutkorqde7" path="res://_data/weapons/pistol.tscn" id="5_ubblq"]
+[ext_resource type="PackedScene" uid="uid://di3b0n452i6k3" path="res://_data/abilities/heal_pack.tscn" id="6_0nf8v"]
+[ext_resource type="PackedScene" uid="uid://bo56ucerapu0a" path="res://character_components/hit_flash/hit_flash.tscn" id="7_u838c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p31jg"]
+resource_local_to_scene = true
+size = Vector2(80, 79)
+
+[node name="Player" node_paths=PackedStringArray("equipped_weapon", "primary_ability") groups=["PLAYER"] instance=ExtResource("1_qngvl")]
+collision_layer = 66
+script = ExtResource("2_wj0xh")
+equipped_weapon = NodePath("RotationJoint/Hand/Pistol")
+primary_ability = NodePath("Abilities/HealPack")
+ally_mask = 6
+enemy_mask = 8
+
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+self_modulate = Color(0, 0.52549, 0.956863, 1)
+texture = ExtResource("3_fn8rw")
+
+[node name="HitFlash" parent="." index="1" node_paths=PackedStringArray("character") instance=ExtResource("7_u838c")]
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+character = NodePath("..")
+
+[node name="CollisionShape" parent="." index="2"]
+visible = false
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_p31jg")
+
+[node name="Hand" parent="RotationJoint" index="0"]
+position = Vector2(40, 0)
+
+[node name="Pistol" parent="RotationJoint/Hand" index="0" instance=ExtResource("5_ubblq")]
+self_modulate = Color(0.329412, 0.647059, 1, 1)
+ability_tint = Color(0.329412, 0.647059, 1, 1)
+
+[node name="HealPack" parent="Abilities" index="0" instance=ExtResource("6_0nf8v")]

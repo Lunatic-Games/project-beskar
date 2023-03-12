@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const PLAYER = preload("res://game/player/player.tscn")
+const PLAYER = preload("res://player/player.tscn")
 
 var player: Player
 
@@ -14,8 +14,7 @@ func _ready() -> void:
 	player = PLAYER.instantiate()
 	player.health_changed.connect(_on_player_health_changed)
 	player.new_ability_set.connect(_on_player_new_ability_set)
-	
-	set_new_location(location)
+	location.add_player_to_location(player)
 	
 	# new_ability_set will first be emitted before it is connected here
 	# so we have to call it manually the first time
@@ -27,6 +26,9 @@ func _ready() -> void:
 
 # Should be called during deferred step
 func set_new_location(new_location: Location, spawn_marker_name: String = ""):
+	var old_player_collision_layer: int = player.collision_layer
+	player.collision_layer = 0
+	
 	if location and not (location == new_location):
 		location.remove_player_as_child(player)
 		location.free()
@@ -40,6 +42,9 @@ func set_new_location(new_location: Location, spawn_marker_name: String = ""):
 	move_child(location, 0)
 	
 	location.add_player_to_location(player, spawn_marker_name)
+	
+	await get_tree().physics_frame
+	player.collision_layer = old_player_collision_layer
 
 
 func _on_player_health_changed(_amount: int):

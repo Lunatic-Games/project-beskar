@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm6jh2v5iutva"]
+
+[ext_resource type="PackedScene" uid="uid://bnayc1ygl33w" path="res://_data_definitions/weapon/weapon.tscn" id="1_g6103"]
+[ext_resource type="Texture2D" uid="uid://bfps3acf2u5su" path="res://_assets/art/weapons/big_blaster.png" id="2_wjidi"]
+[ext_resource type="PackedScene" uid="uid://dn05rrqdpq0ql" path="res://_data/abilities/pistol_shot.tscn" id="3_1ftlg"]
+[ext_resource type="PackedScene" uid="uid://dapedvsgq5a04" path="res://_data/projectiles/big_projectile.tscn" id="3_lxfei"]
+
+[node name="BigBlaster" instance=ExtResource("1_g6103")]
+texture = ExtResource("2_wjidi")
+offset = Vector2(28, 0)
+
+[node name="PistolShot" parent="PrimaryAbilityContainer" index="0" instance=ExtResource("3_1ftlg")]
+
+[node name="SpawnProjectile" parent="PrimaryAbilityContainer/PistolShot/OnActivateComponentContainer" index="0"]
+projectile = ExtResource("3_lxfei")
+
+[editable path="PrimaryAbilityContainer/PistolShot"]

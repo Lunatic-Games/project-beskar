@@ -12,6 +12,7 @@ var queued_text: Array[String]
 
 func _ready() -> void:
 	dialog_box.hide()
+	GlobalSignals.dialog_request.connect(_on_GlobalSignals_dialog_request)
 
 
 func _input(event) -> void:
@@ -21,7 +22,13 @@ func _input(event) -> void:
 		_next()
 
 
+func _on_GlobalSignals_dialog_request(dialog_pages: Array[String]):
+	for dialog in dialog_pages:
+		queue_text(dialog)
+
+
 func display_text(text: String) -> void:
+	get_tree().paused = true
 	dialog_box.show()
 	dialog_box.set_text(text)
 
@@ -44,9 +51,14 @@ func queue_and_wait(text: String) -> void:
 
 
 func _next():
+	if dialog_box.is_still_typing_out():
+		dialog_box.skip_typing()
+		return
+	
 	finished_current_text.emit()
 	if queued_text:
 		display_text(queued_text.pop_front())
 	else:
 		dialog_box.hide()
 		finished_all_text.emit()
+		get_tree().paused = false

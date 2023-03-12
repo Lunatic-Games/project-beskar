@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsunrsxmb8gs2"]
+
+[ext_resource type="Script" path="res://character_components/combat_ai/combat_ai.gd" id="1_5btgo"]
+[ext_resource type="PackedScene" uid="uid://chqxn17v248ee" path="res://misc/hostile_detection/hostile_detection.tscn" id="2_qrv8h"]
+
+[node name="CombatAI" type="Node2D"]
+script = ExtResource("1_5btgo")
+
+[node name="HostileDetection" parent="." instance=ExtResource("2_qrv8h")]

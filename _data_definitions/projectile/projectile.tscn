@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://du01sse7odpdl"]
+
+[ext_resource type="Script" path="res://_data_definitions/projectile/projectile.gd" id="1_8bifx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgmpm"]
+resource_local_to_scene = true
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_8bifx")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kgmpm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

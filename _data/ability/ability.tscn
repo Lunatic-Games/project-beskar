@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://du8tilyen8hrm"]
-
-[ext_resource type="Script" path="res://_data/ability/ability.gd" id="1_sno0b"]
-
-[node name="Ability" type="Node2D"]
-script = ExtResource("1_sno0b")
-
-[node name="ComponentContainer" type="Node2D" parent="."]

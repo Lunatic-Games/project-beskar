@@ -19,9 +19,8 @@ config/icon="res://icon.svg"
 
 GlobalSignals="*res://global/signals.gd"
 GlobalUtility="*res://global/utility.gd"
-GlobalProjectilePool="*res://global/projectile_pool.gd"
 GlobalNodeFinder="*res://global/node_finder.gd"
-Debug="*res://global/debug.gd"
+GlobalDebug="*res://global/debug.gd"
 
 [display]
 

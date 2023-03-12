@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://btafe8mo608no"]
+
+[ext_resource type="PackedScene" path="res://_data_definitions/location/location.tscn" id="1_gyagt"]
+[ext_resource type="Script" path="res://_data/locations/boss_location.gd" id="2_muely"]
+[ext_resource type="PackedScene" uid="uid://5ju02eo67fpv" path="res://misc/gateway/gateway.tscn" id="2_on2rn"]
+[ext_resource type="PackedScene" uid="uid://dka73aah7o4s3" path="res://_data/enemies/boss.tscn" id="2_urfsx"]
+[ext_resource type="Texture2D" uid="uid://cryuuhbiqigea" path="res://_assets/art/projectiles/basic_projectile.png" id="5_0eeum"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0mkt"]
+resource_local_to_scene = true
+size = Vector2(64, 248)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dj6n8"]
+resource_local_to_scene = true
+size = Vector2(124.5, 118)
+
+[sub_resource type="Gradient" id="Gradient_7m0y7"]
+offsets = PackedFloat32Array(0, 0.850365, 1)
+colors = PackedColorArray(0.93845, 0.93845, 0.93845, 1, 0.992157, 0.992157, 0.992157, 0.713726, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jrr6c"]
+gradient = SubResource("Gradient_7m0y7")
+
+[sub_resource type="Curve" id="Curve_ail55"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rxtxl"]
+curve = SubResource("Curve_ail55")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0pd0e"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 50.0
+emission_ring_inner_radius = 35.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.2
+orbit_velocity_max = 0.2
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_rxtxl")
+color = Color(0.831373, 0.901961, 1, 1)
+color_ramp = SubResource("GradientTexture1D_jrr6c")
+
+[node name="BossLocation" instance=ExtResource("1_gyagt")]
+script = ExtResource("2_muely")
+
+[node name="LowTileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(131075, 589824, 0, 131074, 524288, 0, 196610, 393216, 0, 851970, 196608, 0, 917506, 393216, 0, 983042, 327680, 0, 983043, 262144, 0, 262146, 65536, 0, 131076, 589824, 0, 131077, 589824, 0, 131078, 262144, 0, 262161, 0, 1, 262160, 131072, 0, 327697, 65536, 0, 786453, 262144, 1, 786452, 196608, 1, 851988, 65536, 1, 851989, 131072, 1)
+
+[node name="DefaultSpawnMarker" parent="Markers" index="0"]
+position = Vector2(1424, 528)
+
+[node name="EastEntrance" type="Marker2D" parent="Markers" index="1"]
+position = Vector2(1792, 544)
+
+[node name="BossEnemy" parent="Enemies" index="0" instance=ExtResource("2_urfsx")]
+position = Vector2(496, 536)
+
+[node name="EastGateway" parent="Gateways" index="0" instance=ExtResource("2_on2rn")]
+position = Vector2(1888, 544)
+location_file = "res://_data/locations/enemy_location.tscn"
+marker_name = "WestEntrance"
+
+[node name="CollisionShape2D" parent="Gateways/EastGateway" index="0"]
+shape = SubResource("RectangleShape2D_s0mkt")
+
+[node name="ReturnGateway" parent="Gateways" index="1" instance=ExtResource("2_on2rn")]
+position = Vector2(306, 536)
+location_file = "res://_data/locations/start_location.tscn"
+
+[node name="CollisionShape2D" parent="Gateways/ReturnGateway" index="0"]
+shape = SubResource("RectangleShape2D_dj6n8")
+
+[node name="Particles" type="GPUParticles2D" parent="Gateways/ReturnGateway" index="1"]
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_0pd0e")
+texture = ExtResource("5_0eeum")
+lifetime = 2.0
+
+[node name="HighTileMap" parent="." index="8"]
+layer_0/tile_data = PackedInt32Array(0, 196608, 1, 1, 589824, 2, 65537, 262144, 4, 131073, 524288, 2, 196609, 524288, 2, 131072, 458752, 2, 65536, 458752, 2, 196608, 458752, 2, 262144, 458752, 2, 327680, 458752, 2, 393216, 458752, 2, 458752, 458752, 2, 524288, 458752, 2, 589824, 458752, 2, 655360, 458752, 2, 720896, 458752, 2, 786432, 458752, 2, 851968, 458752, 2, 917504, 458752, 2, 983040, 458752, 2, 1048576, 458752, 2, 1114112, 65536, 1, 1114113, 0, 3, 1048577, 196608, 4, 983041, 524288, 2, 917505, 524288, 2, 851969, 524288, 2, 786433, 524288, 2, 720897, 524288, 2, 655361, 524288, 2, 589825, 524288, 2, 524289, 524288, 2, 458753, 524288, 2, 393217, 524288, 2, 327681, 524288, 2, 262145, 524288, 2, 1114114, 0, 3, 1114115, 0, 3, 1114116, 0, 3, 1114117, 0, 3, 1114118, 0, 3, 1114119, 0, 3, 1114120, 0, 3, 1114121, 0, 3, 1114122, 0, 3, 1114123, 0, 3, 1114124, 0, 3, 1114125, 0, 3, 1114126, 0, 3, 1114127, 0, 3, 1114128, 0, 3, 1114129, 0, 3, 1114130, 0, 3, 1114131, 0, 3, 1114132, 0, 3, 1114133, 0, 3, 1114134, 0, 3, 1114135, 0, 3, 1114136, 0, 3, 1114137, 0, 3, 1114138, 0, 3, 1114139, 0, 3, 1114140, 0, 3, 1114141, 0, 3, 1114142, 0, 3, 1114143, 131072, 1, 1048607, 524288, 2, 1048606, 131072, 4, 1048605, 589824, 2, 1048604, 589824, 2, 1048603, 589824, 2, 1048602, 589824, 2, 1048601, 589824, 2, 1048600, 589824, 2, 1048599, 589824, 2, 1048598, 589824, 2, 1048597, 196608, 4, 1048596, 131072, 4, 1048595, 589824, 2, 1048594, 589824, 2, 1048593, 589824, 2, 1048592, 589824, 2, 1048591, 589824, 2, 1048590, 589824, 2, 1048589, 589824, 2, 1048588, 589824, 2, 1048587, 589824, 2, 1048586, 589824, 2, 1048585, 589824, 2, 1048584, 589824, 2, 1048583, 589824, 2, 1048582, 589824, 2, 1048581, 589824, 2, 1048580, 589824, 2, 1048579, 589824, 2, 1048578, 589824, 2, 2, 589824, 2, 3, 589824, 2, 4, 589824, 2, 5, 589824, 2, 6, 589824, 2, 7, 589824, 2, 8, 589824, 2, 10, 589824, 2, 9, 589824, 2, 11, 589824, 2, 12, 589824, 2, 13, 589824, 2, 14, 589824, 2, 16, 589824, 2, 15, 589824, 2, 17, 589824, 2, 18, 589824, 2, 19, 589824, 2, 20, 589824, 2, 21, 589824, 2, 22, 589824, 2, 23, 589824, 2, 24, 589824, 2, 25, 589824, 2, 26, 589824, 2, 27, 589824, 2, 28, 589824, 2, 29, 589824, 2, 30, 589824, 2, 31, 262144, 1, 65567, 524288, 2, 65566, 327680, 4, 65565, 0, 3, 65564, 0, 3, 65563, 0, 3, 65562, 0, 3, 65561, 0, 3, 65560, 0, 3, 65559, 0, 3, 65558, 0, 3, 65557, 0, 3, 65556, 0, 3, 65555, 0, 3, 65554, 0, 3, 65553, 0, 3, 65552, 0, 3, 65551, 0, 3, 65550, 0, 3, 65549, 0, 3, 65548, 0, 3, 65547, 0, 3, 65546, 0, 3, 65545, 0, 3, 65544, 0, 3, 65543, 0, 3, 65540, 0, 3, 65539, 0, 3, 65538, 0, 3, 65541, 0, 3, 65542, 0, 3, 262172, 131072, 1, 262171, 65536, 1, 196635, 196608, 1, 196636, 262144, 1, 983060, 458752, 2, 917524, 196608, 1, 917525, 262144, 1, 983061, 524288, 2, 786447, 196608, 1, 786448, 262144, 1, 851984, 131072, 1, 851983, 65536, 1, 262162, 196608, 1, 327698, 65536, 1, 327699, 131072, 1, 262163, 262144, 1, 131103, 524288, 2, 131102, 458752, 2, 196638, 458752, 2, 262174, 458752, 2, 262175, 524288, 2, 196639, 524288, 2, 327711, 524288, 2, 327710, 458752, 2, 393247, 131072, 1, 393246, 65536, 1, 851999, 524288, 2, 917535, 524288, 2, 983070, 458752, 2, 917534, 458752, 2, 851998, 458752, 2, 786462, 458752, 2, 786463, 524288, 2, 983071, 524288, 2, 720926, 196608, 1, 720927, 262144, 1)
+
+[connection signal="died" from="Enemies/BossEnemy" to="." method="_on_boss_enemy_died"]
+
+[editable path="Gateways/EastGateway"]
+[editable path="Gateways/ReturnGateway"]

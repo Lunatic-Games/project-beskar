@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://kqe4akc8yfd2"]
+
+[ext_resource type="Script" path="res://_data_definitions/ability/ability.gd" id="1_lydbt"]
+
+[node name="Ability" type="Node"]
+script = ExtResource("1_lydbt")
+
+[node name="OnActivateComponentContainer" type="Node" parent="."]

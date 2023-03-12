@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://dapedvsgq5a04"]
+
+[ext_resource type="PackedScene" uid="uid://du01sse7odpdl" path="res://_data_definitions/projectile/projectile.tscn" id="1_1xc2t"]
+[ext_resource type="Texture2D" uid="uid://cryuuhbiqigea" path="res://_assets/art/projectiles/basic_projectile.png" id="2_lxoi8"]
+[ext_resource type="Texture2D" uid="uid://dwawbmyndgk5b" path="res://_assets/art/projectiles/big_projectile.png" id="3_wn6xv"]
+
+[sub_resource type="Curve" id="Curve_u3vaf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6jt0m"]
+curve = SubResource("Curve_u3vaf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rv8ap"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_6jt0m")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_234w2"]
+resource_local_to_scene = true
+size = Vector2(48, 48)
+
+[node name="BigProjectile" instance=ExtResource("1_1xc2t")]
+
+[node name="Particles" type="GPUParticles2D" parent="." index="0"]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_rv8ap")
+texture = ExtResource("2_lxoi8")
+
+[node name="Sprite" type="Sprite2D" parent="." index="1"]
+rotation = 0.785397
+texture = ExtResource("3_wn6xv")
+
+[node name="CollisionShape" parent="." index="2"]
+rotation = 0.785397
+shape = SubResource("RectangleShape2D_234w2")

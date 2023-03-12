@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://di3b0n452i6k3"]
+
+[ext_resource type="PackedScene" uid="uid://kqe4akc8yfd2" path="res://_data_definitions/ability/ability.tscn" id="1_birjs"]
+[ext_resource type="PackedScene" uid="uid://chgueb1d4om7g" path="res://_data/ability_components/heal_caster/heal_caster.tscn" id="2_ebm48"]
+[ext_resource type="Texture2D" uid="uid://bevugsf5ifyf" path="res://_assets/art/ability_icons/heal_pack.png" id="2_lh62l"]
+
+[node name="HealPack" instance=ExtResource("1_birjs")]
+display_name = "Heal Pack"
+icon = ExtResource("2_lh62l")
+
+[node name="HealCaster" parent="OnActivateComponentContainer" index="0" instance=ExtResource("2_ebm48")]
+flat_heal_amount = 20
+missing_health_percentage_heal = 20.0

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://mrg7hqy08gn8"]
+
+[ext_resource type="PackedScene" uid="uid://d1if0675e6odx" path="res://_data_definitions/enemy/enemy.tscn" id="1_xfatn"]
+[ext_resource type="Texture2D" uid="uid://c7aw6dhrm2qnq" path="res://_assets/art/enemies/goon.png" id="3_4xqk5"]
+[ext_resource type="PackedScene" uid="uid://bo56ucerapu0a" path="res://character_components/hit_flash/hit_flash.tscn" id="5_a78ku"]
+[ext_resource type="PackedScene" uid="uid://bi6qutkorqde7" path="res://_data/weapons/pistol.tscn" id="5_eion8"]
+[ext_resource type="PackedScene" uid="uid://bsunrsxmb8gs2" path="res://character_components/combat_ai/combat_ai.tscn" id="6_sa6ym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgxil"]
+resource_local_to_scene = true
+size = Vector2(80, 80)
+
+[node name="Goon" node_paths=PackedStringArray("equipped_weapon") instance=ExtResource("1_xfatn")]
+equipped_weapon = NodePath("RotationJoint/Hand/Pistol")
+
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+self_modulate = Color(1, 0.0627451, 0.482353, 1)
+texture = ExtResource("3_4xqk5")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("RectangleShape2D_cgxil")
+
+[node name="Hand" parent="RotationJoint" index="0"]
+position = Vector2(40, 0)
+
+[node name="Pistol" parent="RotationJoint/Hand" index="0" instance=ExtResource("5_eion8")]
+self_modulate = Color(0.937255, 0.101961, 0.4, 1)
+ability_tint = Color(0.898039, 0.129412, 0.419608, 1)
+
+[node name="CombatAI" parent="." index="3" node_paths=PackedStringArray("controlled_character") instance=ExtResource("6_sa6ym")]
+controlled_character = NodePath("..")
+
+[node name="HitFlash" parent="." index="5" node_paths=PackedStringArray("character") instance=ExtResource("5_a78ku")]
+self_modulate = Color(1, 0.0627451, 0.482353, 1)
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+character = NodePath("..")

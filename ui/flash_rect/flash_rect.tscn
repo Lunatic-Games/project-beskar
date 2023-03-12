@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" path="res://ui/flash_rect/flash_rect.gd" id="1_6isbv"]
 
-[sub_resource type="Animation" id="Animation_wsyog"]
+[sub_resource type="Animation" id="Animation_u8qk1"]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -17,7 +18,7 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_xww0p"]
+[sub_resource type="Animation" id="Animation_mso5b"]
 resource_name = "flash"
 length = 0.3
 tracks/0/type = "value"
@@ -35,18 +36,12 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4h7at"]
 _data = {
-"RESET": SubResource("Animation_wsyog"),
-"flash": SubResource("Animation_xww0p")
+"RESET": SubResource("Animation_u8qk1"),
+"flash": SubResource("Animation_mso5b")
 }
 
 [node name="FlashRect" type="ColorRect"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1900.0
-offset_bottom = -1060.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(10, 10)
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_6isbv")
 

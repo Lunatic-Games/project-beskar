@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuddeirdlbn16"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://ui/ability_bar/ability_bar.gd" id="1_cv87r"]
-[ext_resource type="PackedScene" uid="uid://b51rr07th8s1b" path="res://ui/ability_bar/ability_icon/ability_icon.tscn" id="2_kkgdo"]
+[ext_resource type="PackedScene" path="res://ui/ability_icon/ability_icon.tscn" id="2_kkgdo"]
 
 [node name="AbilityBar" type="HBoxContainer"]
 offset_left = 17.0

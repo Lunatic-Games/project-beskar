@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dka73aah7o4s3"]
+
+[ext_resource type="PackedScene" uid="uid://d1if0675e6odx" path="res://_data_definitions/enemy/enemy.tscn" id="1_p84mc"]
+[ext_resource type="Texture2D" uid="uid://3q5j7pndok6u" path="res://_assets/art/enemies/boss.png" id="2_pnm75"]
+[ext_resource type="PackedScene" uid="uid://bm6jh2v5iutva" path="res://_data/weapons/big_blaster.tscn" id="3_5xxps"]
+[ext_resource type="PackedScene" uid="uid://bo56ucerapu0a" path="res://character_components/hit_flash/hit_flash.tscn" id="3_do5hn"]
+[ext_resource type="PackedScene" uid="uid://bsunrsxmb8gs2" path="res://character_components/combat_ai/combat_ai.tscn" id="5_8y0pv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2juv6"]
+resource_local_to_scene = true
+size = Vector2(160, 160)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exgtt"]
+resource_local_to_scene = true
+radius = 1955.1
+
+[node name="Boss" node_paths=PackedStringArray("equipped_weapon") instance=ExtResource("1_p84mc")]
+equipped_weapon = NodePath("RotationJoint/Hand/BigBlaster")
+max_health = 100
+
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+self_modulate = Color(1, 0.0627451, 0.482353, 1)
+texture = ExtResource("2_pnm75")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("RectangleShape2D_2juv6")
+
+[node name="Hand" parent="RotationJoint" index="0"]
+position = Vector2(80, 0)
+
+[node name="BigBlaster" parent="RotationJoint/Hand" index="0" instance=ExtResource("3_5xxps")]
+self_modulate = Color(1, 0.0627451, 0.482353, 1)
+ability_tint = Color(1, 0.0627451, 0.482353, 1)
+
+[node name="HitFlash" parent="." index="4" node_paths=PackedStringArray("character") instance=ExtResource("3_do5hn")]
+self_modulate = Color(1, 0.0627451, 0.482353, 1)
+offset_left = -80.0
+offset_top = -79.0
+offset_right = 79.0
+offset_bottom = 80.0
+character = NodePath("..")
+
+[node name="CombatAI" parent="." index="5" node_paths=PackedStringArray("controlled_character") instance=ExtResource("5_8y0pv")]
+controlled_character = NodePath("..")
+
+[node name="DetectionShape" parent="CombatAI/HostileDetection" index="0"]
+shape = SubResource("CircleShape2D_exgtt")
+
+[editable path="CombatAI"]
+[editable path="CombatAI/HostileDetection"]

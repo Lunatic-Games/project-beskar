@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://4isl3e7gu1y3"]
+
+[ext_resource type="PackedScene" uid="uid://tn2f0qpi2mmc" path="res://_data_definitions/ability_component/ability_component.tscn" id="1_ds5po"]
+[ext_resource type="Script" path="res://_data/ability_components/spawn_projectile/spawn_projectile.gd" id="1_jy1f4"]
+
+[node name="SpawnProjectile" instance=ExtResource("1_ds5po")]
+script = ExtResource("1_jy1f4")
+projectile = null
+speed = 750.0
+should_hit_caster_enemies = true
+should_hit_caster_allies = false
+base_projectile_collision_mask = 1
+damage_to_hit_character = 0
+
+[connection signal="activated" from="." to="." method="_on_activated"]

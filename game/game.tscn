@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3pwtmpqeypyc"]
+[gd_scene load_steps=6 format=3 uid="uid://dk0tgesxeoexh"]
 
-[ext_resource type="PackedScene" uid="uid://bc7jgyfi6y7lr" path="res://_data/location/_data/start_location.tscn" id="1_lh5ax"]
+[ext_resource type="PackedScene" uid="uid://dkihoamixrgeh" path="res://_data/locations/start_location.tscn" id="1_lh5ax"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_mgbqf"]
 [ext_resource type="PackedScene" uid="uid://d2kmkorwnlxnn" path="res://ui/resource_bar/resource_bar.tscn" id="3_2akh5"]
 [ext_resource type="PackedScene" uid="uid://cuddeirdlbn16" path="res://ui/ability_bar/ability_bar.tscn" id="4_kc4cw"]
-[ext_resource type="PackedScene" uid="uid://cc4pekvjc4nsk" path="res://dialog_manager/dialog_manager.tscn" id="5_avx8h"]
+[ext_resource type="PackedScene" path="res://ui/dialog_manager/dialog_manager.tscn" id="5_avx8h"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_mgbqf")
